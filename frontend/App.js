@@ -3,7 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import LoginScreen from './src/screens/LoginScreen';
 import RegisterScreen from './src/screens/RegisterScreen';
-// import DashboardScreen from './src/screens/DashboardScreen'; // To do
+import DashboardScreen from './src/screens/DashboardScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -14,10 +14,8 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator>
         {isLoggedIn ? (
-          // Placeholder for Dashboard
            <Stack.Screen name="Dashboard" options={{ title: 'Sweet Shop' }}>
-             {props => <LoginScreen {...props} setIsLoggedIn={setIsLoggedIn} />} 
-             {/* Use basic component temporarily or create dummy Dashboard */}
+             {props => <DashboardScreen {...props} setIsLoggedIn={setIsLoggedIn} />}
            </Stack.Screen>
         ) : (
           <>
