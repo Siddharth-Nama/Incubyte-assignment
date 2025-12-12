@@ -44,13 +44,26 @@ const DashboardScreen = ({ setIsLoggedIn }) => {
         setIsLoggedIn(false);
     };
 
+    const handlePurchase = async (id) => {
+        try {
+            const response = await client.post(`/sweets/${id}/purchase/`);
+            Alert.alert('Success', 'Purchase successful!');
+            setSweets(prevSweets => prevSweets.map(sweet => 
+                sweet.id === id ? { ...sweet, quantity: response.data.quantity } : sweet
+            ));
+        } catch (error) {
+             console.error(error);
+             Alert.alert('Error', error.response?.data?.error || 'Purchase failed');
+        }
+    };
+
     const renderItem = ({ item }) => (
         <View style={styles.card}>
             <Text style={styles.name}>{item.name}</Text>
             <Text>Category: {item.category}</Text>
             <Text>Price: ${item.price}</Text>
             <Text>Stock: {item.quantity}</Text>
-            <Button title="Purchase" disabled={item.quantity === 0} onPress={() => {}} />
+            <Button title="Purchase" disabled={item.quantity === 0} onPress={() => handlePurchase(item.id)} />
         </View>
     );
 
