@@ -50,6 +50,64 @@ main {
   background-color: #0056b3;
 }
 
-.error {
-  color: red;
+/* Dashboard Styles */
+.dashboard-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.logout-btn {
+    background-color: #dc3545 !important; /* Red */
+    width: auto !important;
+}
+
+.sweets-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.sweet-card {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    text-align: left;
+}
+
+.sweet-card h3 {
+    margin-top: 0;
+}
+
+.category {
+    color: #666;
+    font-size: 0.9em;
+}
+
+.price {
+    font-weight: bold;
+    color: #28a745;
+    font-size: 1.1em;
+}
+
+.stock {
+    font-size: 0.9em;
+    margin-bottom: 10px;
+}
+
+.purchase-btn {
+    background-color: #28a745 !important;
+}
+
+.purchase-btn:disabled {
+    background-color: #ccc !important;
+    cursor: not-allowed;
 }
