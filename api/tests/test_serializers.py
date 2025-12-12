@@ -24,10 +24,9 @@ class AuthSerializerTests(TestCase):
         }
         serializer = RegisterSerializer(data=data)
         self.assertFalse(serializer.is_valid())
-        self.assertIn('non_field_errors', serializer.errors)
+        self.assertIn('password', serializer.errors)
 
     def test_login_serializer_valid(self):
-        # Create user content
         User = get_user_model()
         User.objects.create_user(email='test@example.com', password='password123')
         
@@ -35,6 +34,8 @@ class AuthSerializerTests(TestCase):
             'email': 'test@example.com',
             'password': 'password123'
         }
-        serializer = LoginSerializer(data=data)
-        self.assertTrue(serializer.is_valid())
+        factory = APIRequestFactory()
+        request = factory.post('/')
+        serializer = LoginSerializer(data=data, context={'request': request})
+        self.assertTrue(serializer.is_valid(), serializer.errors)
         self.assertEqual(serializer.validated_data['user'].email, 'test@example.com')
