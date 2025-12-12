@@ -111,3 +111,27 @@ main {
     background-color: #ccc !important;
     cursor: not-allowed;
 }
+
+/* Search Bar Styles */
+.search-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.search-bar input {
+    flex: 1;
+    min-width: 150px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.reset-btn {
+    background-color: #6c757d !important; /* Grey */
+}
