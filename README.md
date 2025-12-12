@@ -59,11 +59,11 @@ The Sweet Shop Management System is a full-stack web application designed to str
 4.  Access the app at `http://localhost:5173`.
 
 ## 3. Screenshots
-> **Note**: Please run the application locally to interact with the live UI.
+> **Note**: Please run the application live to interact with the live UI.
 
-*   **Login Screen**: Clean, centered card layout with error handling.
-*   **Dashboard**: Grid view of sweets with stock indicators and "Green" aesthetic.
-*   **Search**: Real-time filtering by Category (Dropdown) and Price.
+*   **Login Screen**: ![Login Screen](screenshots/login.png)
+*   **Register Screen**: ![Register Screen](screenshots/register.png)
+*   **Home Screen**: ![Home Screen](screenshots/home.png)
 
 ## 4. Test Report
 The application has been rigorously tested using TDD principles.
@@ -79,12 +79,6 @@ OK
 ```
 *A detailed report is available in `TEST_REPORT.txt`.*
 
-## 5. My AI Usage
-I utilized AI tools to accelerate the development of this project, focusing on efficiency and best practices.
-*   **Project Scaffolding**: AI helped generate the initial Django and Vite directory structures.
-*   **Boilerplate Code**: Used AI to write standard CRUD Views and Serializers, allowing me to focus on business logic (permissions, inventory).
-*   **Frontend Styling**: AI assisted in generating the "Green Theme" CSS variables and responsive media queries to ensure a professional look.
-*   **Test Generation**: I leveraged AI to brainstorm edge cases and write unit tests for the Inventory system.
 
 **Verification**: All AI-generated code was manually reviewed, refactored, and integrated by me to ensure correctness and adherence to the assignment requirements.
 
