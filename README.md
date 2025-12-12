@@ -2,6 +2,10 @@
 
 **Git Repository:** [https://github.com/Siddharth-Nama/Incubyte-assignment](https://github.com/Siddharth-Nama/Incubyte-assignment)
 
+
+**Live Application**:  [https://incubyte-assignment-self.vercel.app/](https://incubyte-assignment-self.vercel.app/)
+
+
 ## 1. Explanation of the Project
 The Sweet Shop Management System is a full-stack web application designed to streamline inventory management and purchasing for a sweets shop. It bridges a robust Django backend with a dynamic React frontend to deliver a seamless user experience.
 
