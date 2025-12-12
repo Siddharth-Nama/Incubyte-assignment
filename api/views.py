@@ -45,3 +45,21 @@ class SweetViewSet(viewsets.ModelViewSet):
 
         serializer = self.get_serializer(queryset, many=True)
         return Response(serializer.data)
+
+    @action(detail=True, methods=['post'])
+    def purchase(self, request, pk=None):
+        sweet = self.get_object()
+        if sweet.quantity > 0:
+            sweet.quantity -= 1
+            sweet.save()
+            return Response({'status': 'purchased', 'quantity': sweet.quantity})
+        else:
+            return Response({'error': 'Out of stock'}, status=status.HTTP_400_BAD_REQUEST)
+
+    @action(detail=True, methods=['post'])
+    def restock(self, request, pk=None):
+        sweet = self.get_object()
+        quantity = int(request.data.get('quantity', 0))
+        sweet.quantity += quantity
+        sweet.save()
+        return Response({'status': 'restocked', 'quantity': sweet.quantity})
