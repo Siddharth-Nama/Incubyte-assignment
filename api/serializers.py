@@ -44,3 +44,10 @@ class LoginSerializer(serializers.Serializer):
 
         attrs['user'] = user
         return attrs
+
+from .models import Sweet
+
+class SweetSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Sweet
+        fields = '__all__'
