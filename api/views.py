@@ -7,8 +7,10 @@ from .models import Sweet
 
 class RegisterView(generics.CreateAPIView):
     serializer_class = RegisterSerializer
+    permission_classes = [permissions.AllowAny]
 
 class LoginView(views.APIView):
+    permission_classes = [permissions.AllowAny]
     def post(self, request):
         serializer = LoginSerializer(data=request.data, context={'request': request})
         serializer.is_valid(raise_exception=True)

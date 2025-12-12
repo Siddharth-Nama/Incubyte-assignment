@@ -19,7 +19,6 @@ export const setAuthToken = (token) => {
     }
 };
 
-// Check for existing token on load
 const token = localStorage.getItem('token');
 if (token) {
     setAuthToken(token);

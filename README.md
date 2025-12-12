@@ -1,83 +1,99 @@
 # Sweet Shop Management System
-**Live Application**
-[Local Setup Only](#setup-instructions)
 
-## Overview
-Welcome to my submission for the Incubyte SDE Intern Assignment. I have engineered a high-performance Sweet Shop Management System that transforms inventory management into a seamless, interactive experience. This project isn't just a basic CRUD app—it's a demonstration of scalable architecture, Test-Driven Development (TDD), and a focus on user experience. I built this to handle complex data operations (search, filtering, inventory control) with ease, replicating the challenges faced in real-world production environments.
+**Git Repository:** [https://github.com/Siddharth-Nama/Incubyte-assignment](https://github.com/Siddharth-Nama/Incubyte-assignment)
 
-## Tech Stack
-*   **Frontend**: **React (Vite)** for a blazing fast UI, styled with modular CSS to prove foundational mastery without relying on heavy frameworks.
-*   **Backend**: **Django & Django REST Framework (DRF)** for a robust, secure, and scalable API.
-*   **Database**: **SQLite** (Dev) optimized for rapid development and testing.
-*   **Tools**: **Git/GitHub** for version control, **TDD** (Django Test Framework) for reliability.
+## 1. Explanation of the Project
+The Sweet Shop Management System is a full-stack web application designed to streamline inventory management and purchasing for a sweets shop. It bridges a robust Django backend with a dynamic React frontend to deliver a seamless user experience.
 
-## Why This Project Stands Out?
-1.  **Architectural Purity**: I maintained a strict separation of concerns. The backend handles heavy lifting (auth, validation, logic), keeping the frontend lightweight and snappy.
-2.  **Test-Driven Development (TDD)**: Unlike standard implementations, this project was built using strict TDD principles. Every model, serializer, view, and workflow was tested *before* implementation, ensuring zero regressions.
-3.  **Professional-Grade Inventory Control**: Implemented logic for real-time stock deductions upon purchase and exclusive admin-only restocking capabilities.
-4.  **Optimized Client-Side Performance**: The frontend manages state efficiently using React Hooks, ensuring that stock updates reflect instantly without unnecessary reloads.
-5.  **Code Quality**: Zero clutter. No comments. Just clean, self-documenting code with meaningful variable names and modular component structure.
-6.  **No Shortcuts**: I avoided "magic" UI libraries. Every component—from the Dashboard grid to the Search filters—is hand-crafted to meet the specific requirements.
+### Key Features
+*   **Secure Authentication**: Role-Based Access Control (RBAC) restricts sensitive actions (Restock) to Admins, while allowing customers to Browse and Purchase.
+*   **Dynamic Inventory**: Real-time stock updates. Users cannot purchase items that are out of stock.
+*   **Search & Filter**: Advanced filtering by Name, Category, and Price Range using a custom-built API.
+*   **Responsiveness**: A fully responsive "Green Theme" UI that works on Mobile and Desktop.
 
-## Implementation Details
-*   **Secure Authentication**: A robust Token-based authentication system using DRF, securing api endpoints for registered users.
-*   **Advanced Filtering**: The system supports dynamic queries. You can filter sweets by:
-    *   **Search**: Name (fuzzy match)
-    *   **Category**: Product Type
-    *   **Price**: Precise Min/Max Range
-*   **Inventory Logic**: 
-    *   **Purchase**: Transactional updates that prevent overselling (stock < 0 checks).
-    *   **Restock**: Protected endpoints accessible only to Staff/Admin users.
-*   **Dynamic UI**: The Dashboard adapts based on user roles (Admin sees Restock controls; Users see Purchase only).
+### Tech Stack
+*   **Frontend**: React (Vite), CSS3 (Custom Design System), Axios
+*   **Backend**: Django, Django REST Framework (DRF), SQLite
+*   **Testing**: Django Test Framework (25+ tests covering Models, Views, and serializers)
+
+## 2. Setup Instructions
+
+### Backend (Django)
+1.  Navigate to the root directory:
+    ```bash
+    git clone https://github.com/Siddharth-Nama/Incubyte-assignment.git
+    cd Incubyte-assignment
+    ```
+2.  Create and activate virtual environment:
+    ```bash
+    python -m venv venv
+    # Windows
+    .\venv\Scripts\activate
+    # Mac/Linux
+    source venv/bin/activate
+    ```
+3.  Install dependencies:
+    ```bash
+    pip install -r requirements.txt
+    ```
+4.  Run migrations and server:
+    ```bash
+    python manage.py migrate
+    python manage.py populate_data  # Optional: Adds fake sweets/users
+    python manage.py runserver
+    ```
+
+### Frontend (React)
+1.  Navigate to frontend directory:
+    ```bash
+    cd frontend
+    ```
+2.  Install dependencies:
+    ```bash
+    npm install
+    ```
+3.  Start Dev Server:
+    ```bash
+    npm run dev
+    ```
+4.  Access the app at `http://localhost:5173`.
+
+## 3. Screenshots
+> **Note**: Please run the application locally to interact with the live UI.
+
+*   **Login Screen**: Clean, centered card layout with error handling.
+*   **Dashboard**: Grid view of sweets with stock indicators and "Green" aesthetic.
+*   **Search**: Real-time filtering by Category (Dropdown) and Price.
+
+## 4. Test Report
+The application has been rigorously tested using TDD principles.
+*   **Total Tests**: 25
+*   **Status**: ALL PASSED
+*   **Coverage**: Models, Serializers, Authentication, Inventory Logic, Search.
+
+**Summary Output:**
+```text
+Ran 25 tests in 25.967s
+
+OK
+```
+*A detailed report is available in `TEST_REPORT.txt`.*
+
+## 5. My AI Usage
+I utilized AI tools to accelerate the development of this project, focusing on efficiency and best practices.
+*   **Project Scaffolding**: AI helped generate the initial Django and Vite directory structures.
+*   **Boilerplate Code**: Used AI to write standard CRUD Views and Serializers, allowing me to focus on business logic (permissions, inventory).
+*   **Frontend Styling**: AI assisted in generating the "Green Theme" CSS variables and responsive media queries to ensure a professional look.
+*   **Test Generation**: I leveraged AI to brainstorm edge cases and write unit tests for the Inventory system.
+
+**Verification**: All AI-generated code was manually reviewed, refactored, and integrated by me to ensure correctness and adherence to the assignment requirements.
+
+---
 
 ## Candidate Profile: Siddharth Nama
 *"I don't just write code; I build solutions that scale."*
 
-Hello! I'm **Siddharth Nama**, a passionate Software Engineer Intern from Kota, India. I thrive on solving complex backend challenges and crafting seamless user experiences. My journey involves:
-
-*   Spearheading "Suvidha Manch" at the Haryana Government (C4GT), where I helped digitize 25,000+ roads.
-*   Optimizing performance at Mercato Agency, creating systems that handle 10,000+ users with ease.
-*   Driving innovation with AI-powered platforms like Scripty and AiProgress.
-*   Leading teams and delivering results under pressure, from managing election portals to restocking systems.
-
-I am fit for this role because I combine strong technical fundamentals (Django, React, SQL) with an ownership mindset. I treat every assignment like a production release—focusing on edge cases, maintainability, and user impact. I am ready to bring this energy and precision to the Incubyte team!
-
-**Let's Connect:**
-*   [LinkedIn](#)
-*   [GitHub](#)
-*   [LeetCode](#)
+I am **Siddharth Nama**, a software engineer passionate about building robust systems.
 *   **Email**: siddharthnama.work@gmail.com
 *   **Phone**: +91-8000694996
-
-## Setup Instructions
-
-Clone the repository:
-```bash
-git clone https://github.com/Siddharth-Nama/Incubyte-assignment.git
-cd Incubyte-assignment
-```
-
-### Backend Setup:
-```bash
-# Navigate to root (where manage.py is)
-python -m venv venv
-# Windows
-.\venv\Scripts\activate
-# Mac/Linux
-source venv/bin/activate
-
-pip install -r requirements.txt
-python manage.py migrate
-# Verify tests (TDD)
-python manage.py test api
-
-python manage.py runserver
-```
-
-### Frontend Setup:
-```bash
-cd frontend
-npm install
-npm run dev
-```
-Visit `http://localhost:5173` to interact with the application.
+*   **Code Philosophy**: Clean, Modular, and Test-Driven.

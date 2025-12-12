@@ -1,0 +1,45 @@
+Test Execution Report
+=====================
+Date: 2025-12-13
+Command: python manage.py test api --verbosity 2
+
+Summary:
+--------
+Ran 25 tests in 25.967s
+
+Result: OK
+
+Details:
+--------
+Creating test database for alias 'default'...
+System check identified no issues (0 silenced).
+test_create_superuser (api.tests.test_models.CustomUserTests.test_create_superuser) ... ok
+test_create_user (api.tests.test_models.CustomUserTests.test_create_user) ... ok
+test_create_user_invalid_email (api.tests.test_models.CustomUserTests.test_create_user_invalid_email) ... ok
+test_create_user_missing_email (api.tests.test_models.CustomUserTests.test_create_user_missing_email) ... ok
+test_string_representation (api.tests.test_models.CustomUserTests.test_string_representation) ... ok
+test_create_sweet (api.tests.test_sweet_model.SweetModelTest.test_create_sweet) ... ok
+test_default_quantity (api.tests.test_sweet_model.SweetModelTest.test_default_quantity) ... ok
+test_string_representation (api.tests.test_sweet_model.SweetModelTest.test_string_representation) ... ok
+test_invalid_credentials (api.tests.test_views.AuthTests.test_invalid_credentials) ... ok
+test_login_user (api.tests.test_views.AuthTests.test_login_user) ... ok
+test_register_user (api.tests.test_views.AuthTests.test_register_user) ... ok
+test_create_sweet (api.tests.test_sweet_api.SweetAPITests.test_create_sweet) ... ok
+test_delete_sweet (api.tests.test_sweet_api.SweetAPITests.test_delete_sweet) ... ok
+test_get_sweets (api.tests.test_sweet_api.SweetAPITests.test_get_sweets) ... ok
+test_update_sweet (api.tests.test_sweet_api.SweetAPITests.test_update_sweet) ... ok
+test_search_by_category (api.tests.test_search.SweetSearchTests.test_search_by_category) ... ok
+test_search_by_name (api.tests.test_search.SweetSearchTests.test_search_by_name) ... ok
+test_search_by_price_range (api.tests.test_search.SweetSearchTests.test_search_by_price_range) ... ok
+test_purchase_sweet (api.tests.test_inventory.InventoryTests.test_purchase_sweet) ... ok
+test_purchase_sweet_insufficient_stock (api.tests.test_inventory.InventoryTests.test_purchase_sweet_insufficient_stock) ... ok
+test_purchase_sweet_out_of_stock (api.tests.test_inventory.InventoryTests.test_purchase_sweet_out_of_stock) ... ok
+test_restock_sweet (api.tests.test_inventory.InventoryTests.test_restock_sweet) ... ok
+test_restock_sweet_non_admin (api.tests.test_inventory.InventoryTests.test_restock_sweet_non_admin) ... ok
+test_login_serializer (api.tests.test_serializers.LoginSerializerTest.test_login_serializer) ... ok
+test_serializer_validation (api.tests.test_serializers.RegisterSerializerTest.test_serializer_validation) ... ok
+
+----------------------------------------------------------------------
+Ran 25 tests in 25.967s
+
+OK
