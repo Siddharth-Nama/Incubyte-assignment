@@ -4,6 +4,10 @@ import client, { setAuthToken } from '../api/client';
 
 const DashboardScreen = ({ setIsLoggedIn }) => {
     const [sweets, setSweets] = useState([]);
+    const [name, setName] = useState('');
+    const [category, setCategory] = useState('');
+    const [minPrice, setMinPrice] = useState('');
+    const [maxPrice, setMaxPrice] = useState('');
 
     const fetchSweets = async () => {
         try {
@@ -12,6 +16,22 @@ const DashboardScreen = ({ setIsLoggedIn }) => {
         } catch (error) {
             console.error(error);
             Alert.alert('Error', 'Failed to fetch sweets');
+        }
+    };
+
+    const handleSearch = async () => {
+        try {
+            const params = {};
+            if (name) params.name = name;
+            if (category) params.category = category;
+            if (minPrice) params.min_price = minPrice;
+            if (maxPrice) params.max_price = maxPrice;
+
+            const response = await client.get('/sweets/search/', { params });
+            setSweets(response.data);
+        } catch (error) {
+            console.error(error);
+            Alert.alert('Error', 'Search failed');
         }
     };
 
@@ -40,6 +60,16 @@ const DashboardScreen = ({ setIsLoggedIn }) => {
                 <Text style={styles.title}>Available Sweets</Text>
                 <Button title="Logout" onPress={logout} color="red" />
             </View>
+            <View style={styles.searchContainer}>
+                <TextInput style={styles.searchInput} placeholder="Name" value={name} onChangeText={setName} />
+                <TextInput style={styles.searchInput} placeholder="Category" value={category} onChangeText={setCategory} />
+                <View style={styles.priceRow}>
+                    <TextInput style={[styles.searchInput, styles.priceInput]} placeholder="Min Price" value={minPrice} onChangeText={setMinPrice} keyboardType="numeric" />
+                    <TextInput style={[styles.searchInput, styles.priceInput]} placeholder="Max Price" value={maxPrice} onChangeText={setMaxPrice} keyboardType="numeric" />
+                </View>
+                <Button title="Search" onPress={handleSearch} />
+                <Button title="Reset" onPress={() => { setName(''); setCategory(''); setMinPrice(''); setMaxPrice(''); fetchSweets(); }} color="gray" />
+            </View>
             <FlatList
                 data={sweets}
                 keyExtractor={(item) => item.id.toString()}
@@ -54,6 +84,10 @@ const styles = StyleSheet.create({
     container: { flex: 1, padding: 10 },
     header: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 },
     title: { fontSize: 20, fontWeight: 'bold' },
+    searchContainer: { marginBottom: 10, padding: 10, backgroundColor: '#f0f0f0', borderRadius: 5 },
+    searchInput: { borderWidth: 1, borderColor: '#ccc', padding: 5, marginBottom: 5, borderRadius: 5, backgroundColor: '#fff' },
+    priceRow: { flexDirection: 'row', justifyContent: 'space-between' },
+    priceInput: { flex: 0.48 },
     list: { paddingBottom: 20 },
     card: { backgroundColor: '#fff', padding: 15, marginBottom: 10, borderRadius: 8, elevation: 2 },
     name: { fontSize: 18, fontWeight: 'bold', marginBottom: 5 }
