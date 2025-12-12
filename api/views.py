@@ -14,7 +14,12 @@ class LoginView(views.APIView):
         serializer.is_valid(raise_exception=True)
         user = serializer.validated_data['user']
         token, created = Token.objects.get_or_create(user=user)
-        return Response({'token': token.key, 'user_id': user.pk, 'email': user.email}, status=status.HTTP_200_OK)
+        return Response({
+            'token': token.key, 
+            'user_id': user.pk, 
+            'email': user.email,
+            'is_staff': user.is_staff
+        }, status=status.HTTP_200_OK)
 
 class SweetViewSet(viewsets.ModelViewSet):
     queryset = Sweet.objects.all()

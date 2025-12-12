@@ -135,3 +135,13 @@ main {
 .reset-btn {
     background-color: #6c757d !important; /* Grey */
 }
+
+.actions {
+    display: flex;
+    gap: 10px;
+}
+
+.restock-btn {
+    background-color: #ffc107 !important; /* Yellow/Orange */
+    color: black !important;
+}

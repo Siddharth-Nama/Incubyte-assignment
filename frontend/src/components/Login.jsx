@@ -12,8 +12,9 @@ const Login = ({ setIsLoggedIn }) => {
         e.preventDefault();
         try {
             const response = await client.post('/auth/login', { email, password });
-            const { token, user_id } = response.data;
+            const { token, user_id, is_staff } = response.data;
             setAuthToken(token);
+            localStorage.setItem('is_staff', is_staff);
             setIsLoggedIn(true);
             navigate('/');
         } catch (err) {

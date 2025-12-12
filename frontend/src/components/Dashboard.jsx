@@ -42,32 +42,48 @@ const Dashboard = ({ setIsLoggedIn }) => {
         fetchSweets();
     };
 
-    const handleLogout = () => {
-        setAuthToken(null);
-        setIsLoggedIn(false);
-        navigate('/login');
-    };
+    const [isAdmin, setIsAdmin] = useState(false);
 
-    const handlePurchase = async (id) => {
+    useEffect(() => {
+        const adminStatus = localStorage.getItem('is_staff') === 'true';
+        setIsAdmin(adminStatus);
+        fetchSweets();
+    }, []);
+
+    const handleRestock = async (id) => {
+        const qty = prompt("Enter quantity to restock:");
+        if (!qty || isNaN(qty)) return;
+        
         try {
-            const response = await client.post(`/sweets/${id}/purchase/`);
-            alert(`Purchased! New quantity: ${response.data.quantity}`);
+            const response = await client.post(`/sweets/${id}/restock/`, { quantity: parseInt(qty) });
+            alert(`Restocked! New quantity: ${response.data.quantity}`);
             setSweets(prevSweets => prevSweets.map(sweet => 
                 sweet.id === id ? { ...sweet, quantity: response.data.quantity } : sweet
             ));
         } catch (err) {
-            alert(err.response?.data?.error || 'Purchase failed');
+            alert(err.response?.data?.error || 'Restock failed');
         }
     };
+
+    const handleLogout = () => {
+        setAuthToken(null);
+        localStorage.removeItem('is_staff');
+        setIsLoggedIn(false);
+        navigate('/login');
+    };
+
+    // ... handlePurchase ...
 
     return (
         <div className="dashboard-container">
             <header className="dashboard-header">
-                <h2>Available Sweets</h2>
+                <h2>Available Sweets {isAdmin && "(Admin)"}</h2>
                 <button onClick={handleLogout} className="logout-btn">Logout</button>
             </header>
 
+            {/* ... search bar ... */}
             <form className="search-bar" onSubmit={handleSearchSubmit}>
+                {/* ... inputs ... */}
                 <input type="text" name="name" placeholder="Name" value={searchParams.name} onChange={handleSearchChange} />
                 <input type="text" name="category" placeholder="Category" value={searchParams.category} onChange={handleSearchChange} />
                 <input type="number" name="min_price" placeholder="Min Price" value={searchParams.min_price} onChange={handleSearchChange} />
@@ -85,13 +101,23 @@ const Dashboard = ({ setIsLoggedIn }) => {
                             <p className="category">{sweet.category}</p>
                             <p className="price">${sweet.price}</p>
                             <p className="stock">Stock: {sweet.quantity}</p>
-                            <button 
-                                onClick={() => handlePurchase(sweet.id)} 
-                                disabled={sweet.quantity === 0}
-                                className="purchase-btn"
-                            >
-                                {sweet.quantity === 0 ? 'Out of Stock' : 'Purchase'}
-                            </button>
+                            <div className="actions">
+                                <button 
+                                    onClick={() => handlePurchase(sweet.id)} 
+                                    disabled={sweet.quantity === 0}
+                                    className="purchase-btn"
+                                >
+                                    {sweet.quantity === 0 ? 'Out of Stock' : 'Purchase'}
+                                </button>
+                                {isAdmin && (
+                                    <button 
+                                        onClick={() => handleRestock(sweet.id)} 
+                                        className="restock-btn"
+                                    >
+                                        Restock
+                                    </button>
+                                )}
+                            </div>
                         </div>
                     ))}
                 </div>
